@@ -48,3 +48,5 @@ source(here::here("R", "bleaching-surveys", "04-fiji-bleaching-map.R"))
 ```{bleaching map by month, fig.width=5.5, fig.height=3.6, fig.retina=2}
 source(here::here("R", "bleaching-surveys", "05-fiji-bleaching-month.R"))
 ```
+
+With thanks to data contributors: Stacy Jupiter (WCS Melanesia), Sangeeta Mangubhai (WCS Fiji), Emily Darling (WCS Global) and Rob Macfarlane (Barefoot Manta Resort, Fiji)
