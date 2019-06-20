@@ -36,7 +36,13 @@ summary(quadrats$mean_macroalgae)
 
 
 #bleaching colony observations 
-cols <- fread(here::here("sample-data",obscoloniesbleached[1])) %>% 
+obscoloniesbleached <- list.files(here::here("sample-data"), 
+                                  pattern = "*obscoloniesbleached*", 
+                                  recursive = TRUE)
+obscoloniesbleached
+obscoloniesbleached[1]
+
+cols <- fread(here::here("sample-data", obscoloniesbleached[1])) %>% 
   as_tibble() %>% 
   clean_names() 
 cols

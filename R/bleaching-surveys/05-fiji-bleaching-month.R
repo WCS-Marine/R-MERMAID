@@ -25,7 +25,7 @@ map.by.month <- ggplot() +
   guides(fill = guide_legend(override.aes = list(alpha = 1))) + 
   xlab("Longitude") + 
   ylab("Latitude") + 
-  facet_wrap(~month, nrow = 3)
+  facet_wrap(~month, nrow = 1)
 
 map.by.month
 ggsave(here::here("sample-outputs", "map by month.pdf"),

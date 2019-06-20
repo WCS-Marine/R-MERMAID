@@ -8,24 +8,31 @@ output:
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd (this file) -->
 
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>")
+```{r global options, echo = FALSE}
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
 # R-MERMAID
 A repo of useful R code for MERMAID analyses and figures. 
 
-Contains a dataset of collected underwater observations from WCS and Manta Trust coral bleaching surveys from the Yasawas, Ra, Ovalau and Leleuvia in Fiji collected between April-June 2019. Learn more about the rapid coral bleaching assessment here, [linked phrase] (www.wcs.org/coral)
+Public dataset of underwater coral bleaching observations surveyed in the Yasawas, Ra, Ovalau and Leleuvia locations in Fiji collected between April-June 2019. Learn more about the rapid coral bleaching assessment here, [linked phrase] (www.wcs.org/coral)
 
 We  plan to add more resource code to support MERMAID analysis in the future. 
 
-Exciting demo showing how the data and code produces a histogram of coral bleaching and a map of coral bleaching reports from the dataset. All code draws on a real dataset of bleaching observations (by coral genus) downloaded from MERMAID. [linked phrase] (www.datamermaid.org)
+MERMAID data can be used to create a histogram of coral bleaching and various maps of coral bleaching reports from the dataset. All code draws on a real dataset of bleaching observations (by coral genus) downloaded from MERMAID. [link] (www.datamermaid.org)
 
-```{r bleaching histogram, fig.width=5.5, fig.height=3.6, fig.retina=2}
+```{r load script, results = "hide", include = FALSE}
+library(here)
 source(here::here("R", "bleaching-surveys", "02-bleach-summaries.R"))
+source(here::here("R", "bleaching-surveys", "03-bleaching-histograms.R"))
+source(here::here("R", "bleaching-surveys", "04-fiji-bleaching-map.R"))
+source(here::here("R", "bleaching-surveys", "05-fiji-bleaching-month.R"))
+```
 
+This histogram shows bleaching observations - % colonies with some level of bleaching (pale to recently dead) - binned into four groups. 
+
+```{r bleaching histogram, fig.height= 3, fig.width=10}
 ggplot(data = data,
        aes(x = floor(data$perc_bleach))) + 
   geom_histogram(aes(fill = bleach.class), 
@@ -41,12 +48,51 @@ ggplot(data = data,
                      limits = c(0,15))
 ```
 
-```{r bleaching map, fig.width=5.5, fig.height=3.6, fig.retina=2}
-source(here::here("R", "bleaching-surveys", "04-fiji-bleaching-map.R"))
+This is a map of bleaching observations using ggplot2 maps. 
+
+```{r bleaching map, fig.width=10, fig.height=5}
+ggplot() +
+  geom_polygon(data = fiji, 
+               aes(x= long, y= lat, group = group)) +
+  coord_equal() + 
+  scale_x_continuous(limits = c(176.5,181.5)) + 
+  geom_point(data = data,
+             aes(x = longitude, y = latitude, fill = bleach.class), 
+             size = 5, shape = 21, alpha = 0.5, 
+             colour = "black", 
+             position = position_jitter(width = 0.005, height = 0.005)) + 
+  scale_fill_manual(values = c("olivedrab3","yellow","orange","red"), 
+                    "Bleached colonies", 
+                    labels = c("<4%", "5-20%", "20-40%", ">40%")) +
+  theme_sleek(base_size = 18) + 
+  #theme(legend.position = "none")
+  guides(fill = guide_legend(override.aes = list(alpha = 1))) + 
+  xlab("Longitude") + 
+  ylab("Latitude")
 ```
 
-```{r bleaching map by month, fig.width=5.5, fig.height=3.6, fig.retina=2}
-source(here::here("R", "bleaching-surveys", "05-fiji-bleaching-month.R"))
+This is the same bleaching map faceted by month. 
+
+```{r bleaching map by month, fig.width=10, fig.height=5}
+ggplot() +
+  geom_polygon(data = fiji, 
+               aes(long, lat, group = group)) +
+  coord_equal() + 
+  scale_x_continuous(limits = c(176.5,181.5)) + 
+  geom_point(data = data,
+             aes(x = longitude, y = latitude, fill = bleach.class), 
+             size = 5, shape = 21, alpha = 0.5, 
+             colour = "black", 
+             position = position_jitter(width = 0.05, height = 0.05)) + 
+  scale_fill_manual(values = c("olivedrab3","yellow","orange","red"), 
+                    "Bleached colonies", 
+                    labels = c("<4%", "5-20%", "20-40%", ">40%")) +
+  theme_sleek(base_size = 16) + 
+  #theme(legend.position = "none") + 
+  guides(fill = guide_legend(override.aes = list(alpha = 1))) + 
+  xlab("Longitude") + 
+  ylab("Latitude") + 
+  facet_wrap(~month, nrow = 1)
 ```
 
 With thanks to data contributors: Stacy Jupiter (WCS Melanesia), Sangeeta Mangubhai (WCS Fiji), Emily Darling (WCS Global) and Rob Macfarlane (Barefoot Manta Resort, Fiji)

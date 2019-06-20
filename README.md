@@ -1,37 +1,26 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- README.md is generated from README.Rmd. Please edit README.Rmd (this file) -->
 R-MERMAID
 =========
 
 A repo of useful R code for MERMAID analyses and figures.
 
-Contains a dataset of collected underwater observations from WCS and Manta Trust coral bleaching surveys from the Yasawas, Ra, Ovalau and Leleuvia in Fiji collected between April-June 2019. Learn more about the rapid coral bleaching assessment here, \[linked phrase\] (www.wcs.org/coral)
+Public dataset of underwater coral bleaching observations surveyed in the Yasawas, Ra, Ovalau and Leleuvia locations in Fiji collected between April-June 2019. Learn more about the rapid coral bleaching assessment here, \[linked phrase\] (www.wcs.org/coral)
 
 We plan to add more resource code to support MERMAID analysis in the future.
 
-Exciting demo showing how the data and code produces a histogram of coral bleaching and a map of coral bleaching reports from the dataset. All code draws on a real dataset of bleaching observations (by coral genus) downloaded from MERMAID. \[linked phrase\] (www.datamermaid.org)
+MERMAID data can be used to create a histogram of coral bleaching and various maps of coral bleaching reports from the dataset. All code draws on a real dataset of bleaching observations (by coral genus) downloaded from MERMAID. \[link\] (www.datamermaid.org)
 
-``` bleaching
-source(here::here("R", "bleaching-surveys", "02-bleach-summaries.R"))
+This histogram shows bleaching observations - % colonies with some level of bleaching (pale to recently dead) - binned into four groups.
 
-ggplot(data = data,
-       aes(x = floor(data$perc_bleach))) + 
-  geom_histogram(aes(fill = bleach.class), 
-                 colour = "black", binwidth = 2) + 
-  theme_sleek(base_size = 14) +
-  scale_fill_manual(values = c("olivedrab3","yellow","orange","red"), 
-                    "Bleached colonies", 
-                    labels = c("<4%", "5-20%", "20-40%", ">40%")) +
-  xlab("Percent bleached colonies") +
-  ylab("# of reefs") +
-  scale_x_continuous(breaks = c(0,10,20,30,40,50,60,70,80), expand = c(0.05,0.5)) + 
-  scale_y_continuous(expand = c(0,0), 
-                     limits = c(0,15))
-```
+![](Figs/bleaching%20histogram-1.png)
 
-``` bleaching
-source(here::here("R", "bleaching-surveys", "04-fiji-bleaching-map.R"))
-```
+This is a map of bleaching observations using ggplot2 maps.
 
-``` bleaching
-source(here::here("R", "bleaching-surveys", "05-fiji-bleaching-month.R"))
-```
+![](Figs/bleaching%20map-1.png)
+
+This is the same bleaching map faceted by month.
+
+![](Figs/bleaching%20map%20by%20month-1.png)
+
+With thanks to data contributors: Stacy Jupiter (WCS Melanesia), Sangeeta Mangubhai (WCS Fiji), Emily Darling (WCS Global) and Rob Macfarlane (Barefoot Manta Resort, Fiji)
