@@ -23,7 +23,7 @@ We  plan to add more resource code to support MERMAID analysis in the future.
 
 Exciting demo showing how the data and code produces a histogram of coral bleaching and a map of coral bleaching reports from the dataset. All code draws on a real dataset of bleaching observations (by coral genus) downloaded from MERMAID. [linked phrase] (www.datamermaid.org)
 
-```{bleaching histogram, fig.width=5.5, fig.height=3.6, fig.retina=2}
+```{r bleaching histogram, fig.width=5.5, fig.height=3.6, fig.retina=2}
 source(here::here("R", "bleaching-surveys", "02-bleach-summaries.R"))
 
 ggplot(data = data,
@@ -41,10 +41,12 @@ ggplot(data = data,
                      limits = c(0,15))
 ```
 
-```{bleaching map, fig.width=5.5, fig.height=3.6, fig.retina=2}
+```{r bleaching map, fig.width=5.5, fig.height=3.6, fig.retina=2}
 source(here::here("R", "bleaching-surveys", "04-fiji-bleaching-map.R"))
 ```
 
-```{bleaching map by month, fig.width=5.5, fig.height=3.6, fig.retina=2}
+```{r bleaching map by month, fig.width=5.5, fig.height=3.6, fig.retina=2}
 source(here::here("R", "bleaching-surveys", "05-fiji-bleaching-month.R"))
 ```
+
+With thanks to data contributors: Stacy Jupiter (WCS Melanesia), Sangeeta Mangubhai (WCS Fiji), Emily Darling (WCS Global) and Rob Macfarlane (Barefoot Manta Resort, Fiji)
