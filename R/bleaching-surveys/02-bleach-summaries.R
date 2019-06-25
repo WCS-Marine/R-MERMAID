@@ -43,7 +43,7 @@ cols.bleach <- cols %>%
 
 cols.bleach
 
-hist(cols.bleach$perc_bleach)
+#hist(cols.bleach$perc_bleach)
 
 #site-level bleaching
 site.bleach <- cols.bleach %>% 
@@ -60,7 +60,7 @@ site.bleach
 
 table(site.bleach$reef_type)
 table(site.bleach$reef_zone)
-hist(site.bleach$depth)
+#hist(site.bleach$depth)
 table(site.bleach$management_rules)
 table(site.bleach$management_name)
 
