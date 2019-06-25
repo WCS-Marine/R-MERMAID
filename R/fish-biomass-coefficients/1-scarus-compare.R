@@ -45,6 +45,13 @@ N_x <- 50; #number of values in the x covariate
 x <- seq(size_min,size_max,length.out=N_x)
 x
 
+#set transect area, in meters
+length = 50
+width = 2
+
+#note biomass calculations from MERMAID python code 
+#https://github.com/data-mermaid/mermaid-api/blob/4b77b8477b11798287e2238ec6f45c1d8792e39c/src/api/utils/__init__.py#L29
+
 test_data <- data.frame(x) %>% 
   as_tibble() %>% 
   rename("test_length_cm" = x) %>% 
@@ -52,14 +59,23 @@ test_data <- data.frame(x) %>%
          mermaid_b = scarus_avg$mean_b, 
          kulbicki_a = 0.0239, 
          kulbicki_b = 2.956, 
-         mermaid_biomass = mermaid_a * (test_length_cm^mermaid_b), 
-         kulbicki_biomass = kulbicki_a * (test_length_cm^kulbicki_b))
-  
+         area = length * width / 10000, 
+         mermaid_biomass_kg = mermaid_a * (test_length_cm^mermaid_b) / 1000, 
+         kulbicki_biomass_kg = kulbicki_a * (test_length_cm^kulbicki_b) / 1000, 
+         mermaid_biomass_kgha = mermaid_biomass_kg / area, 
+         kulbicki_biomass_kgha = kulbicki_biomass_kg / area)
   
 test_data
-ggplot(test_data, aes(x = kulbicki_biomass, y = mermaid_biomass)) +
+summary(test_data$mermaid_biomass_kgha) 
+summary(test_data$kulbicki_biomass_kgha) 
+
+
+ggplot(test_data, aes(x = kulbicki_biomass_kgha, y = mermaid_biomass_kgha)) +
   geom_point(shape = 21, size = 3) + 
   theme_sleek()
 
-summary(lm(test_data$mermaid_biomass ~ test_data$kulbicki_biomass))
+ggsave(here("sample-outputs", "Scarus-biomass-kgha-comparisons.png"), 
+       height =2, width = 3)
+
+summary(lm(test_data$mermaid_biomass_kgha ~ test_data$kulbicki_biomass_kgha))
 
