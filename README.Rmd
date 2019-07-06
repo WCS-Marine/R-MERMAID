@@ -32,23 +32,6 @@ source(here::here("R", "bleaching-surveys", "05-fiji-bleaching-month.R"))
 ```
 
 
-```{r bleachinghistogram, fig.width=6, fig.height = 2.5, fig.align="center"}
-ggplot(data = data,
-       aes(x = floor(data$perc_bleach))) + 
-  geom_histogram(aes(fill = bleach.class), 
-                 colour = "black", binwidth = 2) + 
-  theme_sleek(base_size = 12) +
-  scale_fill_manual(values = c("olivedrab3","yellow","orange","red"), 
-                    "Bleached colonies", 
-                    labels = c("<4%", "5-20%", "20-40%", ">40%")) +
-  xlab("Percent bleached colonies") +
-  ylab("# of reefs") +
-  scale_x_continuous(breaks = c(0,10,20,30,40,50,60,70,80), expand = c(0.05,0.5)) + 
-  scale_y_continuous(expand = c(0,0), 
-                     limits = c(0,15))
-```
-
-
 ```{r bleachingmap, fig.width=10, fig.height=4, fig.retina=2}
 ggplot() +
   geom_polygon(data = fiji, 
