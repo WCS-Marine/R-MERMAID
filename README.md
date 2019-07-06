@@ -1,11 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit README.Rmd (this file) -->
-``` r
-knitr::opts_chunk$set(fig.width=12, fig.height=8, 
-                      fig.path='Figs/',
-                      echo=FALSE, warning=FALSE, message=FALSE)
-```
-
 R-MERMAID
 =========
 
@@ -22,11 +16,5 @@ Exciting demo showing how the data and code produces a histogram of coral bleach
 <img src="Figs/bleachingmap-1.png" width="960" style="display: block; margin: auto auto auto 0;" />
 
 <img src="Figs/bleaching-map-month-1.png" width="960" style="display: block; margin: auto auto auto 0;" />
-
-![](Figs/bleachinghistogram-1.png)
-
-<img src="Figs/bleachingmap-1.png" width="960" />
-
-<img src="Figs/bleaching-map-month-1.png" width="528" />
 
 With thanks to data contributors: Stacy Jupiter (WCS Melanesia), Sangeeta Mangubhai (WCS Fiji), Emily Darling (WCS Global) and Rob Macfarlane (Barefoot Manta Resort, Fiji)
