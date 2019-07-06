@@ -29,10 +29,10 @@ bleach.histogram <- ggplot(data = data,
   scale_y_continuous(expand = c(0,0), 
                      limits = c(0,15))
 
-bleach.histogram
-
-ggsave(here::here("sample-outputs", "bleach-histogram.pdf"), 
-       height = 3, width = 6)
+# bleach.histogram
+# 
+# ggsave(here::here("sample-outputs", "bleach-histogram.pdf"), 
+#        height = 3, width = 6)
 
 #summaries
 names(data)

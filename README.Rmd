@@ -70,7 +70,7 @@ ggplot() +
   ylab("Latitude")
 ```
 
-```{r bleaching-map-month, fig.width=10, fig.height=3, fig.retina=2}
+```{r bleaching-map-month, fig.width=10, fig.height=3}
 ggplot() +
   geom_polygon(data = fiji, 
                aes(long, lat, group = group)) +
@@ -84,7 +84,7 @@ ggplot() +
   scale_fill_manual(values = c("olivedrab3","yellow","orange","red"), 
                     "Bleached colonies", 
                     labels = c("<4%", "5-20%", "20-40%", ">40%")) +
-  theme_sleek(base_size = 16) + 
+  theme_sleek(base_size = 14) + 
   #theme(legend.position = "none") + 
   guides(fill = guide_legend(override.aes = list(alpha = 1))) + 
   xlab("Longitude") + 

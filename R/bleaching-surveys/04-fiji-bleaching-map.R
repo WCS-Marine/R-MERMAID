@@ -36,9 +36,9 @@ fiji.map <- ggplot() +
   xlab("Longitude") + 
   ylab("Latitude")
 
-fiji.map
-ggsave(here::here("sample-outputs", "map-fiji.pdf"),
-       height = 10, width = 10)
+# fiji.map
+# ggsave(here::here("sample-outputs", "map-fiji.pdf"),
+#        height = 10, width = 10)
 
 
 

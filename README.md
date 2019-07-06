@@ -15,6 +15,6 @@ Exciting demo showing how the data and code produces a histogram of coral bleach
 
 <img src="Figs/bleachingmap-1.png" width="960" style="display: block; margin: auto auto auto 0;" />
 
-<img src="Figs/bleaching-map-month-1.png" width="960" style="display: block; margin: auto auto auto 0;" />
+<img src="Figs/bleaching-map-month-1.png" style="display: block; margin: auto auto auto 0;" />
 
 With thanks to data contributors: Stacy Jupiter (WCS Melanesia), Sangeeta Mangubhai (WCS Fiji), Emily Darling (WCS Global) and Rob Macfarlane (Barefoot Manta Resort, Fiji)

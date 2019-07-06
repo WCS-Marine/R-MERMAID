@@ -27,6 +27,6 @@ map.by.month <- ggplot() +
   ylab("Latitude") + 
   facet_wrap(~month, nrow = 1)
 
-map.by.month
-ggsave(here::here("sample-outputs", "map by month.pdf"),
-       height = 10)
+# map.by.month
+# ggsave(here::here("sample-outputs", "map by month.pdf"),
+#        height = 10)
