@@ -10,7 +10,7 @@ output:
 
 ```{r globaloptions, echo = FALSE}
 knitr::opts_chunk$set(fig.path='Figs/',
-                      fig.align = "left",
+                      fig.align = "center",
                       echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
@@ -37,7 +37,7 @@ ggplot(data = data,
        aes(x = floor(data$perc_bleach))) + 
   geom_histogram(aes(fill = bleach.class), 
                  colour = "black", binwidth = 2) + 
-  theme_sleek(base_size = 14) +
+  theme_sleek(base_size = 12) +
   scale_fill_manual(values = c("olivedrab3","yellow","orange","red"), 
                     "Bleached colonies", 
                     labels = c("<4%", "5-20%", "20-40%", ">40%")) +
